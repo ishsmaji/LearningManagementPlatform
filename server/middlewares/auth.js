@@ -6,7 +6,7 @@ const User = require("../models/User");
 exports.auth = async (req, res, next) => {
   try {
     const token =
-      req.cookie.toekn ||
+      req.cookie.token ||
       req.body.token ||
       req.header("Authorisation").replace("Bearer", "");
 
@@ -19,7 +19,7 @@ exports.auth = async (req, res, next) => {
 
     try {
       const decode = await jwt.verify(token, process.env.JWT_SECRET);
-      req.user = decode;
+      req.User = decode;
     } catch (error) {
       return res.status(401).json({
         success: true,
