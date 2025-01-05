@@ -9,6 +9,7 @@ exports.createCourse = async (req, res) => {
       req.body;
 
     const thumbnail = req.flies.thumbnailImage;
+
     if (
       !courseName ||
       !courseDescription ||
@@ -50,7 +51,7 @@ exports.createCourse = async (req, res) => {
       category: categoryDetails._id,
       thumbnail: thumbnailImage.secure_url,
     });
-    await User.findByIdAndDelete(
+    await User.findByIdAndUpdate(
       { _id: instructorDetails._id },
       {
         $push: {
@@ -60,7 +61,7 @@ exports.createCourse = async (req, res) => {
       { new: true }
     );
 
-    await Category.findByIdAndDelete(
+    await Category.findByIdAndUpdate(
       { _id: categoryDetails._id },
       {
         $push: {

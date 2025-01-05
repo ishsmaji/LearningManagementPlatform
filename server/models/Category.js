@@ -4,6 +4,7 @@ const categorySchema=new mongoose.Schema({
     course:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Course",
+        required:true,
     },
     name:{
         type:String,
@@ -11,6 +12,7 @@ const categorySchema=new mongoose.Schema({
     },
     description:{
         type:String,
+        required:true,
     }
 });
 
