@@ -38,7 +38,7 @@ exports.updateProfile=async(req ,res)=>{
 }
 
 
-exports.deleteProfile=async(req ,res)=>{
+exports.deleteAccount=async(req ,res)=>{
     try {
         const id=req.user.id;
         const userDetails=await User.findById(id);
@@ -66,7 +66,7 @@ exports.deleteProfile=async(req ,res)=>{
 }
 
 
-const getUserDetails=async(req ,res)=>{
+const getAllUserDetails=async(req ,res)=>{
     try {
         const id=req.user.id;
         
