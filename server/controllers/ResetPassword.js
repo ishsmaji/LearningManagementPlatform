@@ -1,47 +1,50 @@
 const User =require("../models/User");
 const mailsender=require("../utils/mailSender");
 const bcrypt=require("bcrypt");
+const crypto = require("crypto");
 
-//resetPasswordtoken
-
-exports.resetPasswordToken = async(req ,res)=>{
-    try {
-        const email =req.body.email;
-        const user=await User.findOne({email:email})
-        if(!user)
-        {
+// resetPasswordToken
+exports.resetPasswordToken = async (req, res) => {
+    try{
+        const {email} = req.body;
+        if(!email){
             return res.status(403).json({
                 success:false,
-                message:"User is not registered yet."
-            })
+                message:"Email is required",
+            });
         }
-        const token=crypto.randomUUID();
-        const updateDetails=await User.findByIdAndUpdate(
-            {email:email},
-            {
-                token:token,
-                resetPasswordExpires:Date.now()+5*60*1000,
-            },
-            {
-                new:true,
-            }
-        )
-        const url=`http://localhost:3000/update-password/${token}`;
-        await mailsender(
-            email,
-            "Reset Your Password",
-            `Password reset link:${url}`
-        );
+        const user = await User.findOne({email:email});
+        if(!user){
+            return res.status(404).json({
+                success:false,
+                message:"Your email is not registered with us",
+            });
+        }
+        const token = crypto.randomUUID();
+        const updateDetails = await User.findOneAndUpdate( {email:email }, 
+                                                             { 
+                                                                token: token,
+                                                                resetPasswordExpires: Date.now() + 5*60*1000,
+                                                             },
+                                                             {new:true}
+                                                            );
+
+        const url = `https://studynotion-abhay.vercel.app/update-password/${token}`
+        await mailsender(email,
+                        "Password Reset Link",
+                        `Your Link for email verification is ${url}. Please click this url to reset your password.`);
         return res.status(200).json({
             success:true,
-            message:"Email sent successfully. Please open your email and change password"
-        })
-    } catch (error) {
-        console.log(error)
+            message:"Email sent Successfully , Check your email and change Password",
+        });
+
+    }
+    catch(err){
         return res.status(500).json({
             success:false,
-            message:"Facing error while sending email"
-        })
+            error:err.message,
+            message:"Something went wrong while reset the password and sending mail",
+        });
     }
 }
 
@@ -56,7 +59,7 @@ exports.resetPassword= async(req ,res)=>{
                 message:"Password not matching",
             })
         }
-        const userDetails=await User.findOne({toekn:token});
+        const userDetails=await User.findOne({token:token});
         if(!userDetails){
             return res.status(401).json({
                 success:false,
@@ -72,7 +75,7 @@ exports.resetPassword= async(req ,res)=>{
         }
         const hahedPassword= await bcrypt.hash(password, 10);
 
-        await User.findByIdAndUpdate(
+        await User.findOneAndUpdate(
             {token:token},
             {password:hahedPassword},
             {new:true},
