@@ -102,7 +102,7 @@ exports.showAllCourses = async (req, res) => {
       }
     )
       .populate("Instructor")
-      .exce();
+      .exec();
 
     return res.staus(200).json({
       success: true,
@@ -118,3 +118,53 @@ exports.showAllCourses = async (req, res) => {
     });
   }
 };
+
+
+
+exports.getCourseDetails=async(req ,res)=>{
+  try {
+    const {courseId}=req.body;
+    const courseDetails=await Course.find({_id:courseId})
+                                          .populate(
+                                          {
+                                            path:"instructor",
+                                            populate:{
+                                                path:"additionalDetails",
+                                            },
+                                          }
+                                          )
+                                          .populate("category")
+                                          .populate("ratingAndReview")
+                                          .populate(
+                                            {
+                                              path:"courseContent",
+                                              populate:{
+                                                  path:"subSection",
+                                              },
+                                            }
+                                            )
+           if(!courseDetails)
+            {
+              return res.staus(400).json({
+                success: false,
+                message: `Could not find the course with ${courseId}`,
+              });
+            }
+           
+            return res.staus(200).json({
+              success: true,
+              message:"Course details fetched successfully",
+              courseDetails,
+            });
+            
+
+
+  } catch (error) {
+    onsole.log(error);
+    return res.staus(500).json({
+      success: false,
+      message: "Unable to fetch course details",
+      error: error.message,
+    });
+  }
+}
