@@ -8,10 +8,12 @@ const dbConnect = require("./config/database");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
+const courseRoute =require("./routes/Course");
 const userRoutes = require("./routes/User");
 const contactRoutes = require("./routes/Contact");
 const profileRoute=require("./routes/Profile");
-// const courseRoute =require("./routes/Course");
+
+
 dotenv.config();
 const PORT = process.env.PORT || 4000;
 dbConnect();
@@ -47,7 +49,7 @@ app.use('/api-docs',authMiddleware, swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/api/auth", userRoutes);
 app.use("/api/contactus", contactRoutes);
 app.use("/api/profiledetails", profileRoute);
-// app.use("/api/courseDetails", courseRoute);
+app.use("/api/courseDetails", courseRoute);
 
 
 

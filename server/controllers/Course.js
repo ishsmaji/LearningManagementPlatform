@@ -1,9 +1,9 @@
 const Category = require("../models/Category");
 const Course = require("../models/Course");
 const User = require("../models/User");
-const { uploadImageToCoudinary } = require("../utils/ImageUploader");
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const Section =require("../models/Section");
-const Subsections =require("../models/Subsections");
+const Subsection =require("../models/Subsection");
 
 
 exports.createCourse = async (req, res) => {
@@ -344,8 +344,8 @@ exports.deleteCourse = async (req, res) => {
     for (const sectionId of courseSections) {
       const section = await Section.findById(sectionId)
       if (section) {
-        const subSections = section.subSection
-        for (const subSectionId of subSections) {
+        const subSection = section.subSection
+        for (const subSectionId of subSection) {
           await SubSection.findByIdAndDelete(subSectionId)
         }
       }

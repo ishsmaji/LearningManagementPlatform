@@ -22,6 +22,73 @@ module.exports = router;
 
 
 
+
+// Route for sending OTP to the user's email
+/**
+ * @swagger
+ * /api/auth/sendOTP:
+ *   post:
+ *     summary: Sends a one-time password (OTP) to the user's email for verification.
+ *     tags:
+ *       - Authentication
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The email address of the user to send the OTP.
+ *                 example: user@gmail.com
+ *     responses:
+ *       200:
+ *         description: OTP sent successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: OTP Sent Successfully
+ *                 otp:
+ *                   type: string
+ *                   description: The generated OTP.
+ *                   example: "123456"
+ *       401:
+ *         description: User already registered.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: User is Already Registered
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *                   example: "An unexpected error occurred."
+ */
+
+
 // Route for user signup
 /**
  * @swagger
@@ -127,71 +194,6 @@ module.exports = router;
  *                   example: User is not registered. Please try again
  */
 
-
-// Route for sending OTP to the user's email
-/**
- * @swagger
- * /api/auth/sendOTP:
- *   post:
- *     summary: Sends a one-time password (OTP) to the user's email for verification.
- *     tags:
- *       - Authentication
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 description: The email address of the user to send the OTP.
- *                 example: user@gmail.com
- *     responses:
- *       200:
- *         description: OTP sent successfully.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: true
- *                 message:
- *                   type: string
- *                   example: OTP Sent Successfully
- *                 otp:
- *                   type: string
- *                   description: The generated OTP.
- *                   example: "123456"
- *       401:
- *         description: User already registered.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: false
- *                 message:
- *                   type: string
- *                   example: User is Already Registered
- *       500:
- *         description: Internal server error.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: false
- *                 error:
- *                   type: string
- *                   example: "An unexpected error occurred."
- */
 
 
 // Route for user login
