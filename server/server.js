@@ -12,6 +12,7 @@ const courseRoute =require("./routes/Course");
 const userRoutes = require("./routes/User");
 const contactRoutes = require("./routes/Contact");
 const profileRoute=require("./routes/Profile");
+const paymentRoute=require("./routes/Payments");
 
 
 dotenv.config();
@@ -50,6 +51,7 @@ app.use("/api/auth", userRoutes);
 app.use("/api/contactus", contactRoutes);
 app.use("/api/profiledetails", profileRoute);
 app.use("/api/courseDetails", courseRoute);
+app.use("/api/paymentDetails", paymentRoute);
 
 
 
