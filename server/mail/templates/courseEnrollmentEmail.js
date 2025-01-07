@@ -70,7 +70,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
             <a href="https://res.cloudinary.com/decy8488i/image/upload/v1736176399/test/wsicp0gmaauflyh8f9pl.png"></a>
             <div class="message">Course Registration Confirmation</div>
             <div class="body">
-                <p>Dear ${name},</p>
+                <p>Dear ${firstName},</p>
                 <p>You have successfully registered for the course <span class="highlight">"${courseName}"</span>. We
                     are excited to have you as a participant!</p>
                 <p>Please log in to your learning dashboard to access the course materials and start your learning journey.

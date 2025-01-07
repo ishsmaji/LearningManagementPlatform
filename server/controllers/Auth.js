@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mailSender = require("../utils/mailSender");
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
-const emailVerificationTemplate = require("../mail/templates/emailVerificationTemplate");
 require("dotenv").config();
 
 //sendotp
@@ -31,8 +30,7 @@ exports.sendOTP = async (req, res) => {
       otpExists = await OTP.findOne({ otp });
     } while (otpExists);
     const otpPayload = await OTP.create({ email, otp });
-    const emailBody = emailVerificationTemplate(otp);
-    await mailSender(email, "Verify Your Email with OTP", emailBody);
+    
     return res.status(200).json({
       success: true,
       message: `OTP sent successfully to ${email}.`,

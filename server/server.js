@@ -1,4 +1,5 @@
 const express = require("express");
+const basicAuth=require("basic-auth");
 const app = express();
 const { specs, swaggerUi } = require('./config/swagger');
 const cookieParser = require("cookie-parser");
@@ -30,7 +31,19 @@ app.use(
 );
 cloudinaryConnect();
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+const authMiddleware = (req, res, next) => {
+    const user = basicAuth(req);
+  
+    const username = 'admin'; 
+    const password = 'password123';   
+    if (user && user.name === username && user.pass === password) {
+      return next();
+    }
+    res.set('WWW-Authenticate', 'Basic realm="Swagger API Docs"');
+    res.status(401).send('Authentication required.');
+  };
+
+app.use('/api-docs',authMiddleware, swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/api/auth", userRoutes);
 app.use("/api/contactus", contactRoutes);
 app.use("/api/profiledetails", profileRoute);
