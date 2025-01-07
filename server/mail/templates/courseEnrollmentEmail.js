@@ -15,6 +15,10 @@ exports.courseEnrollmentEmail = (courseName, name) => {
                 margin: 0;
                 padding: 0;
             }
+            img{
+			  height: 80px;
+			  width: 80px;
+			}
     
     
             .container {
@@ -67,8 +71,9 @@ exports.courseEnrollmentEmail = (courseName, name) => {
     
     <body>
         <div class="container">
-            <a href="https://res.cloudinary.com/decy8488i/image/upload/v1736176399/test/wsicp0gmaauflyh8f9pl.png"></a>
-            <div class="message">Course Registration Confirmation</div>
+        <img src= "https://res.cloudinary.com/decy8488i/image/upload/v1736176399/test/wsicp0gmaauflyh8f9pl.png"
+			alt="StudyNotion Logo"/>   
+        <div class="message">Course Registration Confirmation</div>
             <div class="body">
                 <p>Dear ${firstName},</p>
                 <p>You have successfully registered for the course <span class="highlight">"${courseName}"</span>. We

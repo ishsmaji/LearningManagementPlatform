@@ -10,7 +10,7 @@ module.exports = router
  * @swagger
  * /api/contactus/contact:
  *   post:
- *     summary: Send contact form details to the server
+ *     summary: 
  *     tags: [Contact]
  *     requestBody:
  *       required: true

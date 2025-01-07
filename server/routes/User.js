@@ -28,7 +28,7 @@ module.exports = router;
  * @swagger
  * /api/auth/sendOTP:
  *   post:
- *     summary: Sends a one-time password (OTP) to the user's email for verification.
+ *     summary: 
  *     tags:
  *       - Authentication
  *     requestBody:
@@ -94,7 +94,7 @@ module.exports = router;
  * @swagger
  * /api/auth/signUp:
  *   post:
- *     summary: Register a new user
+ *     summary: 
  *     tags: [Authentication]
  *     requestBody:
  *       required: true
@@ -201,7 +201,7 @@ module.exports = router;
  * @swagger
  * /api/auth/login:
  *   post:
- *     summary: Login a  user
+ *     summary: 
  *     tags: [Authentication]
  *     requestBody:
  *       required: true
@@ -273,7 +273,7 @@ module.exports = router;
  * @swagger
  * /api/auth/changePassword:
  *   post:
- *     summary: Change the password of the logged-in user
+ *     summary: 
  *     tags: [Auth]
  *     security:
  *       - bearerAuth: []
@@ -337,7 +337,7 @@ module.exports = router;
  * @swagger
  * /api/auth/resetPasswordToken:
  *   post:
- *     summary: Generate a reset password token and send it via email
+ *     summary: 
  *     tags: [Authentication]
  *     requestBody:
  *       required: true
@@ -397,7 +397,7 @@ module.exports = router;
  * @swagger
  * /api/auth/resetPassword:
  *   post:
- *     summary: Reset the user password using the reset token
+ *     summary: 
  *     tags: [Authentication]
  *     requestBody:
  *       required: true

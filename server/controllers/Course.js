@@ -307,25 +307,27 @@ exports.getFullCourseDetails = async (req, res) => {
   }
 }
 
+// server/controllers/Course.js
+
 exports.getInstructorCourses = async (req, res) => {
   try {
-    const instructorId = req.user.id
+    const instructorId = req.user.id;
     const instructorCourses = await Course.find({
       instructor: instructorId,
-    }).sort({ createdAt: -1 })
+    }).sort({ createdAt: -1 });
     res.status(200).json({
       success: true,
       data: instructorCourses,
-    })
+    });
   } catch (error) {
-    console.error(error)
+    console.error(error);
     res.status(500).json({
       success: false,
       message: "Failed to retrieve instructor courses",
       error: error.message,
-    })
+    });
   }
-}
+};
 // Delete the Course
 exports.deleteCourse = async (req, res) => {
   try {

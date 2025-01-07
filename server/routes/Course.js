@@ -1,75 +1,70 @@
 
-const express = require("express")
-
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 const {
   createCourse,
   getAllCourses,
   getCourseDetails,
-  getFullCourseDetails ,
+  getFullCourseDetails,
   editCourse,
   getInstructorCourses,
   deleteCourse
-} = require("../controllers/Course")
+} = require("../controllers/Course");
 
 const {
-  showAllCategories,
+  showAllCategories,  
   createCategory,
   categoryPageDetails
-} = require("../controllers/Category")
+} = require("../controllers/Category");
 
 const {
   createSection,
   updateSection,
   deleteSection
-} = require("../controllers/Section")
+} = require("../controllers/Section");
 
 const {
   createSubsection,
   updateSubSection,
   deleteSubsection
-} = require("../controllers/Subsection")
+} = require("../controllers/Subsection");
 
 const {
   createRating,
   getAverageRating,
   getAllRating
-} = require("../controllers/RatingAndReview")
+} = require("../controllers/RatingAndReview");
 
 const {
   updateCourseProgress
 } = require("../controllers/courseProgress");
 
-const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth")
+const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth");
 
-
-router.post("/createCourse", auth, isInstructor, createCourse)
-router.post("/createSection", auth, isInstructor, createSection)
-router.post("/updateSection", auth, isInstructor, updateSection)
-router.post("/deleteSection", auth, isInstructor, deleteSection)
-router.post("/updateSubSection", auth, isInstructor, updateSubSection)
-router.post("/deleteSubsection", auth, isInstructor, deleteSubsection)
-router.post("/createSubsection", auth, isInstructor, createSubsection)
+router.post("/createCourse", auth, isInstructor, createCourse);
+router.post("/createSection", auth, isInstructor, createSection);
+router.post("/updateSection", auth, isInstructor, updateSection);
+router.post("/deleteSection", auth, isInstructor, deleteSection);
+router.post("/updateSubSection", auth, isInstructor, updateSubSection);
+router.post("/deleteSubsection", auth, isInstructor, deleteSubsection);
+router.post("/createSubsection", auth, isInstructor, createSubsection);
 router.get("/getAllCourses", getAllCourses);
-router.post("/getCourseDetails", getCourseDetails)
-router.post("/getFullCourseDetails", auth, getFullCourseDetails)
-router.post("/editCourse", auth, isInstructor, editCourse)
-router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
-router.delete("/deleteCourse", deleteCourse)
+router.post("/getCourseDetails", getCourseDetails);
+router.post("/getFullCourseDetails", auth, getFullCourseDetails);
+router.post("/editCourse", auth, isInstructor, editCourse);
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
+router.delete("/deleteCourse", deleteCourse);
 router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 
+router.post("/createCategory", auth, isAdmin, createCategory);
+router.get("/showAllCategories", showAllCategories);
+router.post("/getCategoryPageDetails", categoryPageDetails);
 
-router.post("/createCategory", auth, isAdmin, createCategory)
-router.get("/showAllCategories", showAllCategories)
-router.post("/getCategoryPageDetails", categoryPageDetails)
+router.post("/createRating", auth, isStudent, createRating);
+router.get("/getAverageRating", getAverageRating);
+router.get("/getReviews", getAllRating);
 
-router.post("/createRating", auth, isStudent, createRating)
-router.get("/getAverageRating", getAverageRating)
-router.get("/getReviews", getAllRating)
-
-module.exports = router
-
-
+module.exports = router;
 
 
 
@@ -78,7 +73,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/createCourse:
  *   post:
- *     summary: Create a new course
+ *     summary: 
  *     tags: [Courses]
  *     requestBody:
  *       required: true
@@ -160,7 +155,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/getAllCourses:
  *   get:
- *     summary: Get all courses
+ *     summary: 
  *     tags: [Courses]
  *     responses:
  *       200:
@@ -207,7 +202,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/getCourseDetails:
  *   post:
- *     summary: Get course details
+ *     summary: 
  *     tags: [Courses]
  *     requestBody:
  *       required: true
@@ -269,7 +264,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/editCourse:
  *   put:
- *     summary: Edit a course
+ *     summary: 
  *     tags: [Courses]
  *     requestBody:
  *       required: true
@@ -340,7 +335,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/getFullCourseDetails:
  *   post:
- *     summary: Get full course details
+ *     summary: 
  *     tags: [Courses]
  *     requestBody:
  *       required: true
@@ -411,7 +406,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/getInstructorCourses:
  *   get:
- *     summary: Get all courses by the instructor
+ *     summary: 
  *     tags: [Courses]
  *     responses:
  *       200:
@@ -448,7 +443,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/deleteCourse:
  *   delete:
- *     summary: Delete a course
+ *     summary: 
  *     tags: [Courses]
  *     requestBody:
  *       required: true
@@ -506,7 +501,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/createCategory:
  *   post:
- *     summary: Create a new category
+ *     summary: 
  *     tags: [Category]
  *     requestBody:
  *       required: true
@@ -573,7 +568,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/showAllCategories:
  *   get:
- *     summary: Retrieve all categories
+ *     summary: 
  *     tags: [Category]
  *     responses:
  *       200:
@@ -620,7 +615,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/getCategoryPageDetails:
  *   post:
- *     summary: Retrieve detailed information about a category and related courses
+ *     summary: 
  *     tags: [Category]
  *     requestBody:
  *       required: true
@@ -692,7 +687,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/createSection:
  *   post:
- *     summary: Create a new section
+ *     summary: 
  *     tags: [Section]
  *     requestBody:
  *       required: true
@@ -758,7 +753,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/updateSection:
  *   put:
- *     summary: Update a section
+ *     summary: 
  *     tags: [Section]
  *     requestBody:
  *       required: true
@@ -822,7 +817,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/deleteSection:
  *   delete:
- *     summary: Delete a section
+ *     summary: 
  *     tags: [Section]
  *     parameters:
  *       - in: path
@@ -868,7 +863,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/createSubsection:
  *   post:
- *     summary: Create a new subsection
+ *     summary: 
  *     tags: [Subsection]
  *     requestBody:
  *       required: true
@@ -946,7 +941,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/updateSubSection:
  *   put:
- *     summary: Update a subsection
+ *     summary: 
  *     tags: [Subsection]
  *     requestBody:
  *       required: true
@@ -1024,7 +1019,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/deleteSubsection:
  *   delete:
- *     summary: Delete a subsection
+ *     summary:
  *     tags: [Subsection]
  *     parameters:
  *       - in: path
@@ -1069,7 +1064,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/createRating:
  *   post:
- *     summary: Create a Rating and Review
+ *     summary: 
  *     tags: [RatingAndReview]
  *     requestBody:
  *       required: true
@@ -1161,7 +1156,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/getAverageRating:
  *   post:
- *     summary: Get Average Rating for a Course
+ *     summary: 
  *     tags: [RatingAndReview]
  *     requestBody:
  *       required: true
@@ -1211,7 +1206,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/getReviews:
  *   get:
- *     summary: Get All Ratings and Reviews
+ *     summary: 
  *     tags: [RatingAndReview]
  *     responses:
  *       200:
@@ -1270,7 +1265,7 @@ module.exports = router
  * @swagger
  * /api/courseDetails/updateCourseProgress:
  *   post:
- *     summary: Update Course Progress
+ *     summary: 
  *     tags: [CourseProgress]
  *     requestBody:
  *       required: true

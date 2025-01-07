@@ -25,7 +25,7 @@ module.exports = router
  * @swagger
  * /api/profiledetails/deleteProfile:
  *   delete:
- *     summary: Delete a user account
+ *     summary: 
  *     tags: [Profile]
  *     security:
  *       - bearerAuth: []
@@ -75,7 +75,7 @@ module.exports = router
  * @swagger
  * /api/profiledetails/updateProfile:
  *   put:
- *     summary: Update a user's profile
+ *     summary: 
  *     tags: [Profile]
  *     security:
  *       - bearerAuth: []
@@ -150,7 +150,7 @@ module.exports = router
  * @swagger
  * /api/profiledetails/getUserDetails:
  *   get:
- *     summary: Fetch all user details
+ *     summary: 
  *     tags: [Profile]
  *     security:
  *       - bearerAuth: []
@@ -200,7 +200,7 @@ module.exports = router
  * @swagger
  * /api/profiledetails/updateDisplayPicture:
  *   put:
- *     summary: Update a user's display picture
+ *     summary:
  *     tags: [Profile]
  *     security:
  *       - bearerAuth: []
@@ -260,7 +260,7 @@ module.exports = router
  * @swagger
  * /api/profiledetails/getEnrolledCourses:
  *   get:
- *     summary: Get a user's enrolled courses
+ *     summary: 
  *     tags: [Profile]
  *     security:
  *       - bearerAuth: []
@@ -310,7 +310,7 @@ module.exports = router
  * @swagger
  * /api/profiledetails/instructorDashboard:
  *   get:
- *     summary: Fetch instructor dashboard details
+ *     summary: 
  *     tags: [Profile]
  *     security:
  *       - bearerAuth: []
