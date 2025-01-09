@@ -37,8 +37,8 @@ cloudinaryConnect();
 const authMiddleware = (req, res, next) => {
     const user = basicAuth(req);
   
-    const username = 'admin'; 
-    const password = 'password123';   
+    const username = process.env.USER_NAME; 
+    const password = process.env.USER_PASS; 
     if (user && user.name === username && user.pass === password) {
       return next();
     }

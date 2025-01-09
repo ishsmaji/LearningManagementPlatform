@@ -1,7 +1,7 @@
 const Category = require("../models/Category");
 const Course = require("../models/Course");
 const User = require("../models/User");
-const { uploadImageToCloudinary } = require("../utils/imageUploader");
+const { uploadImageToCloudinary } = require("../utils/ImageUploader");
 const Section =require("../models/Section");
 const Subsection =require("../models/Subsection");
 
