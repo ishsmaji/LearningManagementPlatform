@@ -16,7 +16,7 @@ exports.updateProfile = async (req, res) => {
       !gender ||
       !userId ||
       !about ||
-      !dateOfBirthkk ||
+      !dateOfBirth ||
       !firstName ||
       !lastName
     ) {
@@ -34,7 +34,7 @@ exports.updateProfile = async (req, res) => {
       { new: true }
     );
 
-    const profileId = userDetails.additionDetails;
+    const profileId = userDetails.additionalDetails;
     const updateProfile = await Profile.findByIdAndUpdate(
       { _id: profileId },
       {
@@ -109,7 +109,7 @@ exports.getAllUserDetails = async (req, res) => {
       });
     }
     const userDetails = await User.findById({ _id: userId })
-      .populate("additionDetails")
+      .populate("additionalDetails")
       .exec();
     if (!userDetails) {
       return res.status(404).json({

@@ -11,7 +11,7 @@ const {
 
 router.delete("/deleteProfile", auth, deleteAccount)
 router.put("/updateProfile", auth, updateProfile)
-router.get("/getUserDetails", auth, getAllUserDetails)
+router.get("/getAllUserDetails", auth, getAllUserDetails)
 router.get("/getEnrolledCourses", auth, getEnrolledCourses)
 router.put("/updateDisplayPicture", auth, updateDisplayPicture)
 router.get("/instructorDashboard", auth, isInstructor, instructorDasboard)
@@ -148,7 +148,7 @@ module.exports = router
 
 /**
  * @swagger
- * /api/profiledetails/getUserDetails:
+ * /api/profiledetails/getAllUserDetails:
  *   get:
  *     summary: 
  *     tags: [Profile]

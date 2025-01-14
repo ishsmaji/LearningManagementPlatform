@@ -8,10 +8,6 @@ export const NavbarLinks = [
       path: '/catalog',
     },
     {
-      title: "Project",
-      path: "/project",
-    },
-    {
       title: "About Us",
       path: "/about",
     },
@@ -19,8 +15,5 @@ export const NavbarLinks = [
       title: "Contact Us",
       path: "/contact",
     },
-    {
-      title:"Rate Us",
-      path:"/rateus",
-    }
+    
   ];

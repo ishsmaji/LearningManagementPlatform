@@ -176,7 +176,7 @@ const Footer = () => {
                     {
                         bottom_footer.map( (element, index) => {
                             return(
-                                <Link key={index} to={element.split(" ").join("-").toLowerCase()} >
+                                <Link key={"/"} to={element.split(" ").join("-").toLowerCase()} >
                                     <p key={index} className={`${bottom_footer.length - 1 === index ? "font-medium text-sm  text-richblack-400" : "font-medium text-sm  text-richblack-400 border-r border-richblack-700 pr-3 "}`} >{element}</p>
                                 </Link>
                             )

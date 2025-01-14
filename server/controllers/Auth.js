@@ -108,7 +108,7 @@ exports.signUp = async (req, res) => {
       gender: null,
       dateOfBirth: null,
       about: null,
-      contactNumber: null,
+      contactNumber:null,
     });
 
     const user = await User.create({
@@ -135,7 +135,7 @@ exports.signUp = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       success: false,
-      message: "User is not registered. Please try again",
+      message:error.message || "User is not registered. Please try again",
     });
   }
 };
