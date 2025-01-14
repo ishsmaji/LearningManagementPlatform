@@ -111,7 +111,7 @@ const Settings = () => {
                             <input type="date" 
                                    name="dateOfBirth"
                                    {...register("dateOfBirth",{required:true})}
-                                    defaultValue={user?.additionDetails?.dateOfBirth}
+                                    defaultValue={user?.additionalDetails?.dateOfBirth}
                                     className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             />
 
@@ -129,7 +129,7 @@ const Settings = () => {
                             <select 
                                 name="gender"
                                 {...register("gender", {required:true})}
-                                defaultValue={user?.additionDetails?.gender}
+                                defaultValue={user?.additionalDetails?.gender}
                                 className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             >
                                 <option value="Male">Male</option>
@@ -150,7 +150,7 @@ const Settings = () => {
                                    placeholder='Enter Contact Number'
                                    {...register("contactNumber",{required:true})}
                                     maxLength={10}
-                                    defaultValue={user?.additionDetails?.contactNumber}
+                                    defaultValue={user?.additionalDetails?.contactNumber}
                                     className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             />
 
@@ -170,7 +170,7 @@ const Settings = () => {
                                 name="about"  
                                 placeholder='Enter Bio Details'
                                 {...register("about", {required:true})}
-                                defaultValue={user?.additionDetails?.about}
+                                defaultValue={user?.additionalDetails?.about}
                                 className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             />
 

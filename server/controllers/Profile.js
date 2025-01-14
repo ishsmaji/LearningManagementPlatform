@@ -25,17 +25,20 @@ exports.updateProfile = async (req, res) => {
         message: "All Fields are Required",
       });
     }
+    
+    
     const userDetails = await User.findByIdAndUpdate(
       { _id: userId },
       {
         firstName: firstName,
         lastName: lastName,
       },
-      { new: true }
+      { new: true } 
     );
+    
 
     const profileId = userDetails.additionalDetails;
-    const updateProfile = await Profile.findByIdAndUpdate(
+    const alluserdetails = await Profile.findByIdAndUpdate(
       { _id: profileId },
       {
         gender: gender,
@@ -45,10 +48,24 @@ exports.updateProfile = async (req, res) => {
       },
       { new: true }
     );
+
+    const updateProfile = await User.findByIdAndUpdate(
+      userId,
+      {
+        $push: { additionalDetails: userDetails.additionalDetails._id }, // Correct usage
+      },
+      { new: true }
+    )
+      .populate("additionalDetails") // Populate referenced documents
+      .exec();
+    
+    
+
+   
     return res.status(200).json({
       success: true,
       message: "Profile Updated Successfully",
-      updateProfile,
+      updateProfile
     });
   } catch (err) {
     return res.status(500).json({
@@ -70,7 +87,7 @@ exports.deleteAccount = async (req, res) => {
         message: "User Not Found",
       });
     }
-    const profileId = userDetails.additionDetails;
+    const profileId = userDetails.additionalDetails;
     await Profile.findByIdAndDelete({ _id: profileId });
     for (courseId of userDetails?.courses) {
       const courseDetails = await Course.findByIdAndUpdate(

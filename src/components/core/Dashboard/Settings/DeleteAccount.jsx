@@ -12,7 +12,11 @@ const DeleteAccount = () => {
 
     // handle delete fn.
     const handleDelete = () => {
-        dispatch(deleteProfile(token, navigate));
+       try {
+         dispatch(deleteProfile(token, navigate));
+       } catch (error) {
+        console.log("error in deleting profile", error);
+       }
     }
 
   return (

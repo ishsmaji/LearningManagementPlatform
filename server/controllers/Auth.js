@@ -113,7 +113,7 @@ exports.signUp = async (req, res) => {
 
     
 
-    const user = await User.create({
+    const populatedUser = await User.create({
       firstName,
       lastName,
       email,
@@ -124,8 +124,16 @@ exports.signUp = async (req, res) => {
       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName}${lastName}`,
     });
 
-    const populatedUser = await User.findById(user._id).populate('additionalDetails');
-    
+
+    const user = await User.findByIdAndUpdate(
+      populatedUser._id,
+          {
+            $push: { additionalDetails: populatedUser.additionalDetails._id }, // Correct usage
+          },
+          { new: true }
+        )
+          .populate("additionalDetails") // Populate referenced documents
+          .exec();
 
     return res.status(200).json({
       success: true,
@@ -152,7 +160,8 @@ exports.login = async (req, res) => {
         message: "All fields are required.",
       });
     }
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("additionalDetails") // Populate referenced documents
+    .exec();
     if (!user) {
       return res.status(403).json({
         success: false,

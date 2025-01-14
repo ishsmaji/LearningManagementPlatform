@@ -8,7 +8,11 @@ const MyProfile = () => {
 
     // fetching the user data from slice
     const {user} = useSelector((state) => state.profile);
+    console.log("Thisis the user details",user.additionalDetails[0].about)
+
     const navigate = useNavigate();
+
+    
     
   return (
     <div className='flex flex-col gap-14 pt-10 pb-20 ' >
@@ -46,7 +50,7 @@ const MyProfile = () => {
 
                 {/* lower */}
                 <div>
-                    { user?.additionDetails?.about ? (<p className='font-normal text-sm text-richblack-300' >{user?.additionDetails?.about}</p>) : (<p className='font-normal text-sm text-richblack-300' >Write Something About Yourself</p>) }
+                    { user?.additionalDetails[0]?.about ? (<p className='font-normal text-sm text-richblack-300' >{user?.additionalDetails[0]?.about}</p>) : (<p className='font-normal text-sm text-richblack-300' >Write Something About Yourself</p>) }
                 </div>
             </div>
 
@@ -78,7 +82,7 @@ const MyProfile = () => {
                         {/* gender */}
                         <div className='flex flex-col gap-2' >
                             <p className='font-normal text-sm text-richblack-600' >Gender</p>
-                            {user?.additionDetails?.gender ? (<p className='text-richblack-5 font-semibold text-sm' >{user?.additionDetails?.gender}</p>) : (<p className='text-richblack-5 font-semibold text-sm' >Add Gender</p>) }
+                            {user?.additionalDetails[0]?.gender ? (<p className='text-richblack-5 font-semibold text-sm' >{user?.additionalDetails[0]?.gender}</p>) : (<p className='text-richblack-5 font-semibold text-sm' >Add Gender</p>) }
                         </div>
 
 
@@ -96,13 +100,13 @@ const MyProfile = () => {
                         {/* phone number */}
                         <div className='flex flex-col gap-2' >
                             <p className='font-normal text-sm text-richblack-600' >Phone Number</p>
-                            {user?.additionDetails?.contactNumber ? (<p className='text-richblack-5 font-semibold text-sm' >{user?.additionDetails?.contactNumber}</p>) : (<p className='text-richblack-5 font-semibold text-sm' >Add Contact Number</p>)}
+                            {user?.additionalDetails[0]?.contactNumber ? (<p className='text-richblack-5 font-semibold text-sm' >{user?.additionalDetails[0]?.contactNumber}</p>) : (<p className='text-richblack-5 font-semibold text-sm' >Add Contact Number</p>)}
                         </div>
 
                         {/* DOB */}
                         <div className='flex flex-col gap-2' >
                             <p className='font-normal text-sm text-richblack-600' >Date Of Birth</p>
-                            { user?.additionDetails?.dateOfBirth ? (<p className='text-richblack-5 font-semibold text-sm' >{user?.additionDetails?.dateOfBirth}</p>) : (<p className='text-richblack-5 font-semibold text-sm' >Add Date Of Birth</p>)}
+                            { user?.additionalDetails[0]?.dateOfBirth ? (<p className='text-richblack-5 font-semibold text-sm' >{user?.additionalDetails[0]?.dateOfBirth}</p>) : (<p className='text-richblack-5 font-semibold text-sm' >Add Date Of Birth</p>)}
                         </div>
 
                     </div>
