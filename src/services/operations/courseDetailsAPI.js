@@ -4,10 +4,12 @@ import { updateCompletedLectures } from "../../slices/viewCourseSlice"
 // import { setLoading } from "../../slices/profileSlice";
 import { apiConnector } from "../apiconnector"
 import { courseEndpoints } from "../apis"
+import { categories } from "../../services/apis";
+
+const {CATEGORIES_API} = categories
 
 const {
   COURSE_DETAILS_API,
-  COURSE_CATEGORIES_API,
   GET_ALL_COURSE_API,
   CREATE_COURSE_API,
   EDIT_COURSE_API,
@@ -69,12 +71,13 @@ export const fetchCourseDetails = async (courseId) => {
 export const fetchCourseCategories = async () => {
   let result = []
   try {
-    const response = await apiConnector("GET", COURSE_CATEGORIES_API)
-    console.log("COURSE_CATEGORIES_API API RESPONSE............", response)
+    const response = await apiConnector("GET",CATEGORIES_API)
+    console.log("CATEGORIES_API API RESPONSE............", response)
     if (!response?.data?.success) {
       throw new Error("Could Not Fetch Course Categories")
     }
-    result = response?.data?.allCategories
+    result = response?.data?.allCategory
+    console.log("This is result",result)
   } catch (error) {
     console.log("COURSE_CATEGORY_API API ERROR............", error)
     toast.error(error.message)
