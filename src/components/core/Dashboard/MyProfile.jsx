@@ -1,15 +1,37 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import IconBtn from '../../common/IconBtn'
 import { FaRegEdit } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {getUserDetails} from '../../../services/operations/profileAPI'
+
 
 const MyProfile = () => {
 
     // fetching the user data from slice
-    const {user} = useSelector((state) => state.profile);
+   
+     const {token} = useSelector((state) => state.auth);
+      const dispatch = useDispatch();
     const navigate = useNavigate();
     
+    const fetchprofiledetails = async (data) => {
+           try{
+            
+             const res=  dispatch(getUserDetails(token, navigate));
+             console.log("This is the despatch response",res)  
+           }
+           catch(error){
+               console.log("error in editing profile", error);
+           }
+       }
+
+       useEffect(() => {
+
+            fetchprofiledetails();
+      }, []);
+    
+
   return (
     <div className='flex flex-col gap-14 pt-10 pb-20 ' >
         {/* heading */}
@@ -21,7 +43,7 @@ const MyProfile = () => {
             <div className='flex justify-between items-center bg-richblack-800 border border-richblack-700 rounded-lg p-8' >
                 {/* left */}
                 <div className='flex gap-6 items-center ' >
-                    <img src={user?.image} alt={`Profile-${user?.firstName}`}  className='w-20 aspect-square object-cover rounded-full ' />
+                    <img src={res?.image} alt={`Profile-${res?.firstName}`}  className='w-20 aspect-square object-cover rounded-full ' />
                     <div className='flex flex-col gap-1' >
                         <p className='font-semibold text-lg text-richblack-5' >{user?.firstName + " " + user?.lastName}</p>
                         <p className='font-normal text-sm text-richblack-300' >{user?.email}</p> 
